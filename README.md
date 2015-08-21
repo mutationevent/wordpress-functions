@@ -6,4 +6,6 @@ a Collection of wordpress functions to put inside the functions.php file
 - add iimage size
 - remove (hide) element form left menu
 - get attachment id from it's URL
-
+- remove wordpress logo from admin bar
+- execute wordpress cron job
+- auto generate post thumbnail

@@ -104,4 +104,28 @@ function prefix_setup_schedule() {
     }
 }
 
+/**
+ * auto generate post thumbnail
+ * source : http://www.fredzone.org/wordpress-generer-automatiquement-les-images-a-la-une-de-ses-articles-441#HFZfE7Dyyx4hBKkZ.99
+ */
+add_action('save_post', 'autothumb', 10, 2); 
+function autothumb( $post_id, $post ){ 
+	if(!current_user_can('upload_files')) 
+		return false; 
+	if(!has_post_thumbnail($post_id)){ 
+		$attached_image = get_children( array( 
+			'post_parent' => $post_id, 
+			'post_type' => 'attachment', 
+			'post_mime_type' => 'image', 
+			'numberposts' => 1 
+		)); 
+		if(!count($attached_image)) 
+			return false; 
+		$attached_image = array_keys( $attached_image ); 
+		set_post_thumbnail($post_id, $attached_image[0]); 
+	}
+}
+
+
+
 ?>
