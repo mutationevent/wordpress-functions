@@ -90,4 +90,18 @@ function remove_wp_logo( $wp_admin_bar ) {
 	//$wp_admin_bar->remove_node('new-content');
 }
 
+/*
+ * execute wordpress cron job 
+*/
+add_action( 'wp', 'prefix_setup_schedule' );
+add_action( 'prefix_twicedaily_event', 'function_to_execute' );
+function function_to_execute(){
+	// put your code here
+}
+function prefix_setup_schedule() {
+    if ( ! wp_next_scheduled( 'prefix_twicedaily_event' ) ) {
+        wp_schedule_event( time(), 'twicedaily', 'prefix_twicedaily_event');
+    }
+}
+
 ?>
