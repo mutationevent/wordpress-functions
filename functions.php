@@ -126,6 +126,14 @@ function autothumb( $post_id, $post ){
 	}
 }
 
-
-
+/**
+* Style A Specific WordPress Menu Item
+**/
+add_filter('nav_menu_css_class' , 'conditional_nav_menu_class' , 10 , 2);
+function conditional_nav_menu_class($classes, $item){
+     if( strtolower($item->title) == "home" ){ 
+             $classes[] = "home-icon";
+     }
+     return $classes;
+}
 ?>
